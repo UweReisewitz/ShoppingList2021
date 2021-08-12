@@ -112,6 +112,14 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ShoppingList2021.Core.Types\ShoppingList2021.Core.Types.csproj">
+      <Project>{06382dcb-88bd-484d-940c-6dca89152a68}</Project>
+      <Name>ShoppingList2021.Core.Types</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShoppingList2021.Core.WinDesktop\ShoppingList2021.Core.WinDesktop.csproj">
+      <Project>{5ea4868b-96dc-4971-a091-694d56a507e1}</Project>
+      <Name>ShoppingList2021.Core.WinDesktop</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShoppingList2021\ShoppingList2021.csproj">
       <Project>{f6840e5f-da11-4e0e-aa24-df3294ef4eff}</Project>
       <Name>ShoppingList2021</Name>

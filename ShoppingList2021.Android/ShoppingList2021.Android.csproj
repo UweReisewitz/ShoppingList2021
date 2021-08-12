@@ -116,6 +116,14 @@
     <AndroidResource Include="Resources\values\strings.xml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ShoppingList2021.Core.Android\ShoppingList2021.Core.Android.csproj">
+      <Project>{f7fc1900-a6e3-40af-954c-90e303f6cc71}</Project>
+      <Name>ShoppingList2021.Core.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShoppingList2021.Core.Types\ShoppingList2021.Core.Types.csproj">
+      <Project>{06382dcb-88bd-484d-940c-6dca89152a68}</Project>
+      <Name>ShoppingList2021.Core.Types</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShoppingList2021\ShoppingList2021.csproj">
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
       <Name>ShoppingList2021</Name>

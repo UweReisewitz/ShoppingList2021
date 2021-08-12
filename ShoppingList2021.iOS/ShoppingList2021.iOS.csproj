@@ -210,6 +210,16 @@
     <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ShoppingList2021.Core.iOS\ShoppingList2021.Core.iOS.csproj">
+      <Project>{8d644fb1-0e6a-42d6-be53-d71d0763145b}</Project>
+      <Name>ShoppingList2021.Core.iOS</Name>
+      <IsAppExtension>false</IsAppExtension>
+      <IsWatchApp>false</IsWatchApp>
+    </ProjectReference>
+    <ProjectReference Include="..\ShoppingList2021.Core.Types\ShoppingList2021.Core.Types.csproj">
+      <Project>{06382dcb-88bd-484d-940c-6dca89152a68}</Project>
+      <Name>ShoppingList2021.Core.Types</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShoppingList2021\ShoppingList2021.csproj">
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
       <Name>ShoppingList2021</Name>

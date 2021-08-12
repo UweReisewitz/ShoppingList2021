@@ -1,5 +1,7 @@
 ﻿using Prism;
 using Prism.Ioc;
+using ShoppingList2021.Core;
+using ShoppingList2021.Core.Types;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.WPF;
 
@@ -25,6 +27,7 @@ namespace ShoppingList2021.Wpf
     {
         public void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterSingleton<IPlatformSpecialFolder, PlatformSpecialFolder>();
         }
     }
 }
