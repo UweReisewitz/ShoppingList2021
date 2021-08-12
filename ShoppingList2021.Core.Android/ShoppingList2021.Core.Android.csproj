@@ -51,9 +51,6 @@
     <Compile Include="PlatformSpecialFolder.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Xamarin.Android.Support.v7.AppCompat" Version="28.0.0.3" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\ShoppingList2021.Core.Types\ShoppingList2021.Core.Types.csproj">
       <Project>{06382dcb-88bd-484d-940c-6dca89152a68}</Project>
       <Name>ShoppingList2021.Core.Types</Name>
