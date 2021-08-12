@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList2021.iOS", "Sho
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShoppingList2021.Wpf", "ShoppingList2021.Wpf\ShoppingList2021.Wpf.csproj", "{775980BB-CF39-46F1-B772-0108A73C322D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{80B3178F-9142-4A8F-A95C-32ACF7088447}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
@@ -135,6 +137,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F6840E5F-DA11-4E0E-AA24-DF3294EF4EFF} = {80B3178F-9142-4A8F-A95C-32ACF7088447}
+		{D560DC79-3B67-4CC8-A751-13F6ED9A0D1E} = {80B3178F-9142-4A8F-A95C-32ACF7088447}
+		{E49BCF46-4129-4FAB-9BE6-20CB2E8E1C00} = {80B3178F-9142-4A8F-A95C-32ACF7088447}
+		{775980BB-CF39-46F1-B772-0108A73C322D} = {80B3178F-9142-4A8F-A95C-32ACF7088447}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DF2028F-1716-42AC-9872-A6F98E762817}
