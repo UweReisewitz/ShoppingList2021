@@ -22,6 +22,9 @@ namespace ShoppingList2021.Database.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("BLOB");
+
                     b.Property<DateTime>("LastBought")
                         .HasColumnType("TEXT");
 

@@ -20,5 +20,8 @@ namespace ShoppingList2021.Database.Model
         public ShoppingItemState State { get; set; }
 
         public DateTime LastBought { get; set; }
+
+        [Column(TypeName ="BLOB")]
+        public byte[] ImageData { get; set; }
     }
 }

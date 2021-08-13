@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ShoppingList2021.Core.Types;
 using ShoppingList2021.Database.Model;
@@ -17,8 +18,11 @@ namespace ShoppingList2021.Database
         public LocalDbContext(IPlatformSpecialFolder iSpecialFolder)
         {
             this.iSpecialFolder = iSpecialFolder;
+        }
 
-            this.Database.Migrate();
+        public Task CreateOrMigrateDatabaseAsync()
+        {
+            return Database.MigrateAsync();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -14,7 +14,8 @@ namespace ShoppingList2021.Database.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Name = table.Column<string>(type: "TEXT", nullable: true),
                     State = table.Column<int>(type: "int", nullable: false),
-                    LastBought = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    LastBought = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ImageData = table.Column<byte[]>(type: "BLOB", nullable: true)
                 },
                 constraints: table =>
                 {

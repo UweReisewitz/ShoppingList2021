@@ -9,7 +9,7 @@ using ShoppingList2021.Database;
 namespace ShoppingList2021.Database.Migrations
 {
     [DbContext(typeof(LocalDbContext))]
-    [Migration("20210813184327_InitialCreate")]
+    [Migration("20210813192758_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,9 @@ namespace ShoppingList2021.Database.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
+
+                    b.Property<byte[]>("ImageData")
+                        .HasColumnType("BLOB");
 
                     b.Property<DateTime>("LastBought")
                         .HasColumnType("TEXT");
