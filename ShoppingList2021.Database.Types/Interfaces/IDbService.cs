@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace ShoppingList2021.Database
+namespace ShoppingList2021.Database.Types
 {
     public interface IDbService
     {        

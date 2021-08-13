@@ -31,7 +31,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShoppingList2021.Database",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatabaseMigrationHelper", "DataBaseMigrationHelper\DatabaseMigrationHelper.csproj", "{626D9F61-59BF-45AE-AFFB-5437BF86867D}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ShoppingList2021.Shared", "ShoppingList2021.Shared\ShoppingList2021.Shared.shproj", "{86C5B437-3C18-4370-92C5-BD60499475C5}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		ShoppingList2021.Shared\ShoppingList2021.Shared.projitems*{775980bb-cf39-46f1-b772-0108a73c322d}*SharedItemsImports = 5
+		ShoppingList2021.Shared\ShoppingList2021.Shared.projitems*{86c5b437-3c18-4370-92c5-bd60499475c5}*SharedItemsImports = 13
+		ShoppingList2021.Shared\ShoppingList2021.Shared.projitems*{d560dc79-3b67-4cc8-a751-13f6ed9a0d1e}*SharedItemsImports = 4
+		ShoppingList2021.Shared\ShoppingList2021.Shared.projitems*{e49bcf46-4129-4fab-9be6-20cb2e8e1c00}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
 		Ad-Hoc|iPhone = Ad-Hoc|iPhone
@@ -336,6 +344,7 @@ Global
 		{4554A745-7D95-439D-8A6B-CA4883938687} = {9BD8CCCA-34F4-4E41-BF3C-73523594F8FA}
 		{5A45E1AE-493B-4C38-B08C-7BBF30DBA048} = {9BD8CCCA-34F4-4E41-BF3C-73523594F8FA}
 		{626D9F61-59BF-45AE-AFFB-5437BF86867D} = {9BD8CCCA-34F4-4E41-BF3C-73523594F8FA}
+		{86C5B437-3C18-4370-92C5-BD60499475C5} = {80B3178F-9142-4A8F-A95C-32ACF7088447}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6DF2028F-1716-42AC-9872-A6F98E762817}

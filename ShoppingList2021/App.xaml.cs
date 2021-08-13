@@ -1,5 +1,7 @@
+using System.Threading.Tasks;
 using Prism;
 using Prism.Ioc;
+using ShoppingList2021.Database.Types;
 using ShoppingList2021.ViewModels;
 using ShoppingList2021.Views;
 using Xamarin.Essentials.Implementation;
@@ -19,6 +21,8 @@ namespace ShoppingList2021
         {
             InitializeComponent();
 
+            await CreateOrMigrateDatabaseAsync();
+
             await NavigationService.NavigateAsync("NavigationPage/MainPage");
         }
 
@@ -28,6 +32,16 @@ namespace ShoppingList2021
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+        }
+
+        private static async Task CreateOrMigrateDatabaseAsync()
+        {
+            var container = ((App)Application.Current).Container;
+
+            var dbServiceFactory = container.Resolve<IDbServiceFactory>();
+            var dbService = dbServiceFactory.CreateNew();
+            await dbService.CreateOrMigrateDatabaseAsync();
+
         }
     }
 }

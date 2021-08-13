@@ -32,10 +32,13 @@
   <ItemGroup>
     <ProjectReference Include="..\ShoppingList2021.Core.Types\ShoppingList2021.Core.Types.csproj" />
     <ProjectReference Include="..\ShoppingList2021.Core.WinDesktop\ShoppingList2021.Core.WinDesktop.csproj" />
+    <ProjectReference Include="..\ShoppingList2021.Database.Types\ShoppingList2021.Database.Types.csproj" />
+    <ProjectReference Include="..\ShoppingList2021.Database\ShoppingList2021.Database.csproj" />
     <ProjectReference Include="..\ShoppingList2021\ShoppingList2021.csproj" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Remove="App.xaml" />
     <EmbeddedResource Remove="MainWindow.xaml" />
   </ItemGroup>
+  <Import Project="..\ShoppingList2021.Shared\ShoppingList2021.Shared.projitems" Label="Shared" />
 </Project>

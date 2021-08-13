@@ -3,6 +3,9 @@ using Prism;
 using Prism.Ioc;
 using ShoppingList2021.Core;
 using ShoppingList2021.Core.Types;
+using ShoppingList2021.Database;
+using ShoppingList2021.Database.Types;
+using ShoppingList2021.Shared;
 using UIKit;
 
 
@@ -36,6 +39,8 @@ namespace ShoppingList2021.iOS
         {
             // Register any platform specific implementations
             containerRegistry.RegisterSingleton<IPlatformSpecialFolder, PlatformSpecialFolder>();
+
+            CommonDependencies.RegisterTypes(containerRegistry);
         }
     }
 }

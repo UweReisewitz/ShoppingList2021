@@ -228,10 +228,19 @@
       <Project>{06382dcb-88bd-484d-940c-6dca89152a68}</Project>
       <Name>ShoppingList2021.Core.Types</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ShoppingList2021.Database.Types\ShoppingList2021.Database.Types.csproj">
+      <Project>{4554a745-7d95-439d-8a6b-ca4883938687}</Project>
+      <Name>ShoppingList2021.Database.Types</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShoppingList2021.Database\ShoppingList2021.Database.csproj">
+      <Project>{5a45e1ae-493b-4c38-b08c-7bbf30dba048}</Project>
+      <Name>ShoppingList2021.Database</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShoppingList2021\ShoppingList2021.csproj">
       <Project>{A682884C-CB44-4A89-B752-27BB634E0ABE}</Project>
       <Name>ShoppingList2021</Name>
     </ProjectReference>
   </ItemGroup>
+  <Import Project="..\ShoppingList2021.Shared\ShoppingList2021.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

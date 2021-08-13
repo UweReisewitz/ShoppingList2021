@@ -15,4 +15,8 @@
     <PackageReference Include="Prism.DryIoc.Forms" Version="8.1.97" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ShoppingList2021.Database.Types\ShoppingList2021.Database.Types.csproj" />
+  </ItemGroup>
+
 </Project>

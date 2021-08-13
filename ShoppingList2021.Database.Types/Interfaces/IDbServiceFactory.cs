@@ -1,4 +1,4 @@
-﻿namespace ShoppingList2021.Database
+﻿namespace ShoppingList2021.Database.Types
 {
     public interface IDbServiceFactory
     {

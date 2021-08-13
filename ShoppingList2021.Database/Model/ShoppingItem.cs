@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using ShoppingList2021.Database.Types;
 
 namespace ShoppingList2021.Database.Model
 {

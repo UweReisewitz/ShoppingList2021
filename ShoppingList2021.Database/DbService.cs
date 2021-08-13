@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using ShoppingList2021.Core.Types;
 using ShoppingList2021.Database.Model;
+using ShoppingList2021.Database.Types;
 
 namespace ShoppingList2021.Database
 {
