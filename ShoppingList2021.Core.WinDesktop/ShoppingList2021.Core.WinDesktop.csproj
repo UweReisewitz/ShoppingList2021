@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <OutputType>Library</OutputType>
-    <RootNamespace>ShoppingList.Core.WInDesktop</RootNamespace>
-    <AssemblyName>ShoppingList.Core.WInDesktop</AssemblyName>
+    <RootNamespace>ShoppingList.Core.WinDesktop</RootNamespace>
+    <AssemblyName>ShoppingList.Core.WinDesktop</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
