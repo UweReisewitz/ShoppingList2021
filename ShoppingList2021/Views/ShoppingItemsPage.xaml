@@ -4,7 +4,6 @@
              xmlns:model="clr-namespace:ShoppingList2021.Models"
              xmlns:local="clr-namespace:ShoppingList2021.ViewModels"
              x:Class="ShoppingList2021.Views.ShoppingItemsPage"
-             BackgroundColor="AliceBlue"
              Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
@@ -16,45 +15,24 @@
                 ItemsSource="{Binding Items}"
                 SelectionMode="None">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:UIShoppingItem">
-                    <SwipeView x:DataType="model:UIShoppingItem">
-                        <SwipeView.RightItems>
-                            <SwipeItems>
-                                <SwipeItem
-                                    IsVisible="{Binding IsOpen}"
-                                    Text="{DynamicResource BoughtButton}" 
-                                    BackgroundColor="LightGreen"
-                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:ShoppingItemsViewModel}}, Path=SetItemBought}"		
-                                    CommandParameter="{Binding .}"/>
-                            </SwipeItems>
-                        </SwipeView.RightItems>
-                        <Grid Padding="5" BackgroundColor="Yellow" >
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="50"/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1*"/>
-                                <ColumnDefinition Width="9*"/>
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.Row="0" Grid.Column="0" Source="{Binding ImageItem}"/>
-                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" VerticalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
-                            <Grid.GestureRecognizers>
-                                <TapGestureRecognizer 
+                <DataTemplate>
+                    <StackLayout Padding="10" x:DataType="model:UIShoppingItem">
+                        <Label Text="{Binding Name}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                        <Label Text="{Binding StateText}" 
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer 
                                 NumberOfTapsRequired="1"
                                 Command="{Binding Source={RelativeSource AncestorType={x:Type local:ShoppingItemsViewModel}}, Path=ItemTapped}"		
                                 CommandParameter="{Binding .}">
-                                </TapGestureRecognizer>
-                            </Grid.GestureRecognizers>
-                        </Grid>
-                        <SwipeView.Triggers>
-                            <DataTrigger TargetType="SwipeView" Binding="{Binding IsOpen}" Value="True">
-                                <Setter Property="BackgroundColor" Value="LightYellow"/>
-                            </DataTrigger>
-                            <DataTrigger TargetType="SwipeView" Binding="{Binding IsBought}"  Value="True">
-                                <Setter Property="BackgroundColor" Value="LightGreen"/>
-                            </DataTrigger>
-                        </SwipeView.Triggers>
-                    </SwipeView>
+                            </TapGestureRecognizer>
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
