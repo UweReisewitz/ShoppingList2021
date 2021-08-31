@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:ShoppingList2021.Models"
+             xmlns:local="clr-namespace:ShoppingList2021.ViewModels"
+             x:Class="ShoppingList2021.Views.ShoppingItemsPage"
+             BackgroundColor="AliceBlue"
+             Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Command="{Binding AddItemCommand}" />
+    </ContentPage.ToolbarItems>
+
+    <RefreshView x:DataType="local:ShoppingItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
+        <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:UIShoppingItem">
+                    <SwipeView x:DataType="model:UIShoppingItem">
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem
+                                    IsVisible="{Binding IsOpen}"
+                                    Text="{DynamicResource BoughtButton}" 
+                                    BackgroundColor="LightGreen"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:ShoppingItemsViewModel}}, Path=SetItemBought}"		
+                                    CommandParameter="{Binding .}"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+                        <Grid Padding="5" BackgroundColor="Yellow" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="9*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Grid.Row="0" Grid.Column="0" Source="{Binding ImageItem}"/>
+                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" VerticalTextAlignment="Center" FontSize="Large" TextColor="Black"/>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ShoppingItemsViewModel}}, Path=ItemTapped}"		
+                                CommandParameter="{Binding .}">
+                                </TapGestureRecognizer>
+                            </Grid.GestureRecognizers>
+                        </Grid>
+                        <SwipeView.Triggers>
+                            <DataTrigger TargetType="SwipeView" Binding="{Binding IsOpen}" Value="True">
+                                <Setter Property="BackgroundColor" Value="LightYellow"/>
+                            </DataTrigger>
+                            <DataTrigger TargetType="SwipeView" Binding="{Binding IsBought}"  Value="True">
+                                <Setter Property="BackgroundColor" Value="LightGreen"/>
+                            </DataTrigger>
+                        </SwipeView.Triggers>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </RefreshView>
+</ContentPage>

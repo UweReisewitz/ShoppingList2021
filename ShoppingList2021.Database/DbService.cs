@@ -69,9 +69,11 @@ namespace ShoppingList2021.Database
             GC.SuppressFinalize(this);
         }
 
-        public async Task AddShoppingItemAsync(IShoppingItem item)
+        public IShoppingItem CreateShoppingItem() => (IShoppingItem)new ShoppingItem();
+
+        public async Task AddShoppingItemAsync(IShoppingItem shoppingItem)
         {
-            await localContext.ShoppingItem.AddAsync((ShoppingItem)item);
+            await localContext.ShoppingItem.AddAsync((ShoppingItem)shoppingItem);
         }
 
         public Task<List<string>> GetSuggestedNamesAsync(string name)

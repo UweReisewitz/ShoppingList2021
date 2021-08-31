@@ -12,6 +12,7 @@ namespace ShoppingList2021.Database.Types
         Task<List<IShoppingItem>> GetShoppingListItemsAsync();
 
         Task AddShoppingItemAsync(IShoppingItem item);
+        IShoppingItem CreateShoppingItem();
         void RemoveShoppingItem(IShoppingItem item);
         Task EndShoppingAsync();
 

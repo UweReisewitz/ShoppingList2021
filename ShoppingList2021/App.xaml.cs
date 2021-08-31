@@ -1,11 +1,12 @@
 using System.Threading.Tasks;
+using AsyncAwaitBestPractices;
 using Prism;
+using Prism.AppModel;
+using Prism.Events;
 using Prism.Ioc;
 using ShoppingList2021.Database.Types;
 using ShoppingList2021.ViewModels;
 using ShoppingList2021.Views;
-using Xamarin.Essentials.Implementation;
-using Xamarin.Essentials.Interfaces;
 using Xamarin.Forms;
 
 namespace ShoppingList2021
@@ -17,23 +18,39 @@ namespace ShoppingList2021
         {
         }
 
-        protected override async void OnInitialized()
+        protected override void OnInitialized()
         {
             InitializeComponent();
 
+            InitializeApplicationAsync().SafeFireAndForget();
+        }
+
+        private async Task InitializeApplicationAsync()
+        {
             await CreateOrMigrateDatabaseAsync();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("NavigationPage/ShoppingItemsPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterSingleton<IAppInfo, AppInfoImplementation>();
-
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<ShoppingItemsPage, ShoppingItemsViewModel>();
+
+            // das sollte nicht nötig sein, ist ein Bug im aktuellen Prism Build
+            // https://github.com/dansiegel/Prism.Container.Extensions/issues/200
+            containerRegistry.RegisterSingleton<IKeyboardMapper, KeyboardMapper>();
         }
 
+        protected override void OnNavigationError(INavigationError navigationError)
+        {
+#if DEBUG
+            // Ensure we always break here while debugging!
+            System.Diagnostics.Debugger.Break();
+#endif
+
+            base.OnNavigationError(navigationError);
+        }
         private static async Task CreateOrMigrateDatabaseAsync()
         {
             var container = ((App)Application.Current).Container;
