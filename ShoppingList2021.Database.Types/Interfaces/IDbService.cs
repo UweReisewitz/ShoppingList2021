@@ -7,6 +7,7 @@ namespace ShoppingList2021.Database.Types
     {        
         Task CreateOrMigrateDatabaseAsync();
 
+        void SaveChanges();
         Task SaveChangesAsync();
 
         Task<List<IShoppingItem>> GetShoppingListItemsAsync();

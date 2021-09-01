@@ -5,10 +5,10 @@ namespace ShoppingList2021.Database.Types
     public enum ShoppingItemState
     {
         [Description("Offen")]
-        Open=1,
+        Open=0,
         [Description("Gekauft")]
-        Bought=2,
+        Bought=1,
         [Description("Einkauf abgeschlossen")]
-        ShoppingComplete=3
+        ShoppingComplete=2
     }
 }

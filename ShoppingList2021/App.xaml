@@ -2,10 +2,35 @@
 <prism:PrismApplication xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:prism="clr-namespace:Prism;assembly=Prism.Forms.Extended"
+             xmlns:converters="clr-namespace:ShoppingList2021.ValueConverters"
              x:Class="ShoppingList2021.App">
-  <Application.Resources>
+  
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Primary">#2196F3</Color>
+            <Style TargetType="Button">
+                <Setter Property="TextColor" Value="White"></Setter>
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Disabled">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="#332196F3" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            <converters:DisplayDateTimeConverter x:Key="DisplayDateTimeConverter"/>
+            <converters:DisplayGuidConverter x:Key="DisplayGuidConverter"/>
+            <converters:AutoSuggestBoxTextChangedEventArgsToPerformUpdateConverter x:Key="AutoSuggestTextChangedConverter"/>
+        </ResourceDictionary>
+    </Application.Resources>
 
-    <!-- Application resource dictionary -->
-
-  </Application.Resources>
 </prism:PrismApplication>

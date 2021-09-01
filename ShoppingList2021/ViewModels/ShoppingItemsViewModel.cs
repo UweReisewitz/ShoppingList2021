@@ -114,16 +114,14 @@ namespace ShoppingList2021.ViewModels
 
         private async Task NavigateToDetailPageAsync(UIShoppingItem uiShoppingItem)
         {
-            await pageDialogService.DisplayAlertAsync("ShoppingItemDetailPage", "Not yet implemented", "Ok");
+            var parameters = new NavigationParameters
+                {
+                    { "DbService", dbService },
+                    { "Item", uiShoppingItem }
+                };
 
-            //var parameters = new NavigationParameters
-            //    {
-            //        { "DbService", dbService },
-            //        { "Item", uiShoppingItem }
-            //    };
-
-            //// This will push the ShoppingItemDetailPage onto the navigation stack
-            //await NavigationService.NavigateAsync("ShoppingItemDetailPage", parameters);
+            // This will push the ShoppingItemDetailPage onto the navigation stack
+            await NavigationService.NavigateAsync("ShoppingItemDetailPage", parameters);
         }
 
         public override void OnNavigatedTo(INavigationParameters parameters)

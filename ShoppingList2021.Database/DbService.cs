@@ -28,10 +28,9 @@ namespace ShoppingList2021.Database
             }
         }
 
-        public Task SaveChangesAsync()
-        {
-            return localContext.SaveChangesAsync();
-        }
+        public void SaveChanges() => localContext.SaveChanges();
+
+        public Task SaveChangesAsync() => localContext.SaveChangesAsync();
 
         public Task<List<IShoppingItem>> GetShoppingListItemsAsync()
         {

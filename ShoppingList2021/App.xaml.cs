@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using AsyncAwaitBestPractices;
+using AutoMapper;
 using Prism;
 using Prism.AppModel;
 using Prism.Events;
@@ -34,8 +35,11 @@ namespace ShoppingList2021
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterInstance<IMapper>(new MapperConfiguration(cfg => ShoppingListMapperConfiguration.CreateMapping(cfg)).CreateMapper());
+
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<ShoppingItemsPage, ShoppingItemsViewModel>();
+            containerRegistry.RegisterForNavigation<ShoppingItemDetailPage, ShoppingItemDetailViewModel>();
 
             // das sollte nicht nötig sein, ist ein Bug im aktuellen Prism Build
             // https://github.com/dansiegel/Prism.Container.Extensions/issues/200
