@@ -22,7 +22,7 @@ namespace ShoppingList2021.Behaviors
                 BindingContext = bindable.BindingContext;
             }
 
-            bindable.BindingContextChanged += OnBindingContextChanged;
+            bindable.BindingContextChanged += BindableBindingContextChanged;
         }
 
         protected override void OnDetachingFrom(T bindable)
@@ -33,11 +33,11 @@ namespace ShoppingList2021.Behaviors
             }
 
             base.OnDetachingFrom(bindable);
-            bindable.BindingContextChanged -= OnBindingContextChanged;
+            bindable.BindingContextChanged -= BindableBindingContextChanged;
             AssociatedObject = null;
         }
 
-        private void OnBindingContextChanged(object sender, EventArgs e)
+        private void BindableBindingContextChanged(object sender, EventArgs e)
         {
             OnBindingContextChanged();
         }

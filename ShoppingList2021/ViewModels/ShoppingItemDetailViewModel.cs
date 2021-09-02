@@ -24,7 +24,6 @@ namespace ShoppingList2021.ViewModels
         public ShoppingItemDetailViewModel(INavigationService navigationService, IMapper mapper, IPhoto photo)
             : base(navigationService)
         {
-            Title = "Detail View";
             this.mapper = mapper;
             this.photo = photo;
 
@@ -74,14 +73,9 @@ namespace ShoppingList2021.ViewModels
         public DelegateCommand<bool?> UpdateSuggestedNames { get; }
         private async Task PerformUpdateSuggestedNamesAsync(bool? performUpdate)
         {
-            if (performUpdate.HasValue && performUpdate.Value)
-            {
-                SuggestedNames = await dbService.GetSuggestedNamesAsync(Name);
-            }
-            else
-            {
-                SuggestedNames = null;
-            }
+            SuggestedNames = performUpdate.HasValue && performUpdate.Value 
+                ? await dbService.GetSuggestedNamesAsync(Name) 
+                : null;
         }
 
         public List<string> SuggestedNames { get; private set; }

@@ -12,8 +12,6 @@ namespace ShoppingList2021.ViewModels
 
         public bool IsBusy { get; set; }
 
-        public string Title { get; set; }
-
         public ViewModelBase(INavigationService navigationService)
         {
             NavigationService = navigationService;

@@ -7,8 +7,8 @@
              Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Done"  Command="{Binding ShoppingDoneCommand}" IconImageSource="ToolbarCheck.png" />
-        <ToolbarItem Text="Add" Command="{Binding AddItemCommand}"  IconImageSource="ToolbarAdd.png" />
+        <ToolbarItem Text="{DynamicResource ToolbarDone}"  Command="{Binding ShoppingDoneCommand}" IconImageSource="ToolbarCheck.png" />
+        <ToolbarItem Text="{DynamicResource ToolbarAdd}" Command="{Binding AddItemCommand}"  IconImageSource="ToolbarAdd.png" />
     </ContentPage.ToolbarItems>
 
     <RefreshView x:DataType="local:ShoppingItemsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
@@ -22,7 +22,7 @@
                             <SwipeItems>
                                 <SwipeItem
                                     IsVisible="{Binding IsOpen}"
-                                    Text="Bought" 
+                                    Text="{DynamicResource BoughtButton}" 
                                     BackgroundColor="LightGreen"
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type local:ShoppingItemsViewModel}}, Path=SetItemBought}"		
                                     CommandParameter="{Binding .}"/>

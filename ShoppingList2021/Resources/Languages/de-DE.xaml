@@ -1,0 +1,17 @@
+﻿<ResourceDictionary 
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <system:String x:Key="BoughtButton">Gekauft</system:String>
+    <system:String x:Key="ToolbarDone">Ende</system:String>
+    <system:String x:Key="ToolbarAdd">Neu</system:String>
+    <system:String x:Key="ToolbarCamera">Kamera</system:String>
+    <system:String x:Key="ToolbarPick">Foto</system:String>
+    <system:String x:Key="LabelId">Id:</system:String>
+    <system:String x:Key="LabelName">Name:</system:String>
+    <system:String x:Key="LabelState">Status:</system:String>
+    <system:String x:Key="LabelLastBought">Letzter Kauf:</system:String>
+    <system:String x:Key="DetailPageTitle">Detailansicht</system:String>
+    <system:String x:Key="ItemsPageTitle">Einkaufsliste</system:String>
+</ResourceDictionary>

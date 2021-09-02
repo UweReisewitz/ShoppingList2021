@@ -17,15 +17,11 @@ namespace ShoppingList2021.ViewModels
     public class ShoppingItemsViewModel : ViewModelBase
     {
         private readonly IDbService dbService;
-        private readonly IPageDialogService pageDialogService;
 
-        public ShoppingItemsViewModel(INavigationService navigationService, IPageDialogService pageDialogService, IDbServiceFactory dbServiceFactory)
+        public ShoppingItemsViewModel(INavigationService navigationService, IDbServiceFactory dbServiceFactory)
             : base(navigationService)
         {
             this.dbService = dbServiceFactory?.CreateNew() ?? throw new ArgumentNullException(nameof(dbServiceFactory));
-            this.pageDialogService = pageDialogService ?? throw new ArgumentNullException(nameof(pageDialogService));
-
-            Title = "Shopping List 2021";
 
             Items = new ObservableCollection<UIShoppingItem>();
             LoadItemsCommand = new AsyncCommand(ExecuteLoadItemsCommandAsync);
