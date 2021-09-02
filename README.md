@@ -1,2 +1,2 @@
 # ShoppingList2021
-A sample prject for Xamarin Forms
+A sample project for Xamarin Forms
