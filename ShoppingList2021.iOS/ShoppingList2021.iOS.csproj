@@ -246,6 +246,18 @@
       <Name>ShoppingList2021</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ToolbarAdd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ToolbarCamera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ToolbarCheck.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ToolbarPickPhoto.png" />
+  </ItemGroup>
   <Import Project="..\ShoppingList2021.Shared\ShoppingList2021.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

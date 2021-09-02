@@ -8,8 +8,8 @@
              Title="{Binding Title}" >
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Photo" Command="{Binding TakePhoto}" />
-        <ToolbarItem Text="Pick" Command="{Binding PickPhoto}" />
+        <ToolbarItem Text="Photo" Command="{Binding TakePhoto}" IconImageSource="ToolbarCamera.png" />
+        <ToolbarItem Text="Pick" Command="{Binding PickPhoto}" IconImageSource="ToolbarPickPhoto.png" />
     </ContentPage.ToolbarItems>
 
     <Grid>
