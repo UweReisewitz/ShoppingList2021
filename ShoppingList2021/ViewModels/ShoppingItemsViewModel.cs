@@ -35,7 +35,6 @@ namespace ShoppingList2021.ViewModels
 
             AddItemCommand = new AsyncCommand(OnAddItemAsync);
             ShoppingDoneCommand = new AsyncCommand(ShoppingDoneCommandAsync);
-
         }
 
         public AsyncCommand ShoppingDoneCommand { get; }

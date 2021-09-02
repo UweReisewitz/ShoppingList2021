@@ -29,6 +29,7 @@
             </Style>
             <converters:DisplayDateTimeConverter x:Key="DisplayDateTimeConverter"/>
             <converters:DisplayGuidConverter x:Key="DisplayGuidConverter"/>
+            <converters:ImageDataToImageSourceConverter x:Key="ImageDataToImageSourceConverter" />
             <converters:AutoSuggestBoxTextChangedEventArgsToPerformUpdateConverter x:Key="AutoSuggestTextChangedConverter"/>
         </ResourceDictionary>
     </Application.Resources>

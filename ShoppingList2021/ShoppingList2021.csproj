@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ShoppingList2021.Core.Types\ShoppingList2021.Core.Types.csproj" />
+    <ProjectReference Include="..\ShoppingList2021.Core\ShoppingList2021.Core.csproj" />
     <ProjectReference Include="..\ShoppingList2021.Database.Types\ShoppingList2021.Database.Types.csproj" />
   </ItemGroup>
 

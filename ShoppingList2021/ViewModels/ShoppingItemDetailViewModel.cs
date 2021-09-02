@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using AsyncAwaitBestPractices;
 using AutoMapper;
 using Prism.Commands;
 using Prism.Navigation;
@@ -17,17 +16,21 @@ namespace ShoppingList2021.ViewModels
     public class ShoppingItemDetailViewModel : ViewModelBase
     {
         private readonly IMapper mapper;
+        private readonly IPhoto photo;
 
         private IDbService dbService;
         private UIShoppingItem uiShoppingItem;
 
-        public ShoppingItemDetailViewModel(INavigationService navigationService, IMapper mapper)
+        public ShoppingItemDetailViewModel(INavigationService navigationService, IMapper mapper, IPhoto photo)
             : base(navigationService)
         {
             Title = "Detail View";
             this.mapper = mapper;
+            this.photo = photo;
 
             UpdateSuggestedNames = new DelegateCommand<bool?>(async (bool? performUpdate) => await PerformUpdateSuggestedNamesAsync(performUpdate));
+            TakePhoto = new DelegateCommand(async () => await TakePhotoAsync());
+            PickPhoto = new DelegateCommand(async () => await PickPhotoAsync());
         }
 
         public Guid Id { get; set; }
@@ -56,7 +59,13 @@ namespace ShoppingList2021.ViewModels
         public EnumValueDescription ItemState
         {
             get => new EnumValueDescription(State, State.GetDescription());
-            set => State = (ShoppingItemState)value.EnumValue;
+            set
+            {
+                if (value != null)
+                {
+                    State = (ShoppingItemState)value.EnumValue;
+                }
+            }
         }
 
         public DateTime LastBought { get; set; }
@@ -77,6 +86,51 @@ namespace ShoppingList2021.ViewModels
 
         public List<string> SuggestedNames { get; private set; }
 
+        public DelegateCommand TakePhoto { get; }
+        private async Task TakePhotoAsync()
+        {
+            if (!IsBusy)
+            {
+                IsBusy = true;
+                var imageData = await photo.TakePhoto();
+                if (imageData == null)
+                {
+                    //await InteractionService.ShowAlertAsync(UIResources.GetString(202810),
+                    //                                        UIResources.GetString(202811),
+                    //                                        UIResources.GetString(UIShortcut.Remove, 10000)).ConfigureAwait(true);
+                    IsBusy = false;
+                    return;
+                }
+
+                ImageData = imageData;
+                IsBusy = false;
+            }
+        }
+
+        public DelegateCommand PickPhoto { get; }
+
+        private async Task PickPhotoAsync()
+        {
+            if (!IsBusy)
+            {
+                IsBusy = true;
+                var imageData = await photo.PickPhoto();
+                if (imageData == null)
+                {
+                    //await InteractionService.ShowAlertAsync(UIResources.GetString(202810),
+                    //                                        UIResources.GetString(202811),
+                    //                                        UIResources.GetString(UIShortcut.Remove, 10000)).ConfigureAwait(true);
+                    IsBusy = false;
+                    return;
+                }
+
+                ImageData = imageData;
+                IsBusy = false;
+            }
+        }
+
+        public byte[] ImageData { get; set; }
+
         public override void OnNavigatedTo(INavigationParameters parameters)
         {
             if (parameters == null)
@@ -91,15 +145,20 @@ namespace ShoppingList2021.ViewModels
 
         public override void OnNavigatedFrom(INavigationParameters parameters)
         {
-            if (dbService != null && uiShoppingItem != null)
+            if (string.IsNullOrWhiteSpace(Name) && uiShoppingItem.IsNewShoppingItem)
+            {
+                dbService.RemoveShoppingItem(uiShoppingItem.DbShoppingItem);
+            }
+            else
             {
                 var oldItem = dbService.FindShoppingItem(Name);
-                if (oldItem != null)
+                if (oldItem != null && oldItem.Id != Id)
                 {
                     if (uiShoppingItem.IsNewShoppingItem)
                     {
                         dbService.RemoveShoppingItem(uiShoppingItem.DbShoppingItem);
                         LastBought = oldItem.LastBought;
+                        ImageData = oldItem.ImageData;
                     }
                     uiShoppingItem = new UIShoppingItem(oldItem);
                     Id = uiShoppingItem.Id;
@@ -111,7 +170,6 @@ namespace ShoppingList2021.ViewModels
                 // instead this should by a synchronous call
                 dbService.SaveChanges();
             }
-
         }
     }
 }

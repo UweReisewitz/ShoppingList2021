@@ -5,6 +5,8 @@ using Prism;
 using Prism.AppModel;
 using Prism.Events;
 using Prism.Ioc;
+using ShoppingList2021.Core;
+using ShoppingList2021.Core.Types;
 using ShoppingList2021.Database.Types;
 using ShoppingList2021.ViewModels;
 using ShoppingList2021.Views;
@@ -36,6 +38,7 @@ namespace ShoppingList2021
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterInstance<IMapper>(new MapperConfiguration(cfg => ShoppingListMapperConfiguration.CreateMapping(cfg)).CreateMapper());
+            containerRegistry.RegisterSingleton<IPhoto, Photo>();
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<ShoppingItemsPage, ShoppingItemsViewModel>();

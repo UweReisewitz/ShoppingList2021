@@ -20,6 +20,7 @@ namespace ShoppingList2021.Wpf
         {
             InitializeComponent();
 
+            Forms.SetFlags("SwipeView_Experimental");
             Forms.Init();
             LoadApplication(new ShoppingList2021.App(new WpfInitializer()));
         }
