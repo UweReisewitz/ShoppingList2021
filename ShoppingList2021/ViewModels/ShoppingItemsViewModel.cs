@@ -53,6 +53,7 @@ namespace ShoppingList2021.ViewModels
                 item.State = ShoppingItemState.Bought;
                 item.LastBought = DateTime.Now;
                 await dbService.SaveChangesAsync();
+                await ExecuteLoadItemsCommandAsync();
             }
         }
 
