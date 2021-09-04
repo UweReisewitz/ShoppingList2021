@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 using AsyncAwaitBestPractices;
 using AsyncAwaitBestPractices.MVVM;
 using Prism.Navigation;
-using Prism.Services;
+using Prism.Events;
 using PropertyChanged;
 using ShoppingList2021.Database.Types;
+using ShoppingList2021.Database.Events;
 using ShoppingList2021.Models;
 
 namespace ShoppingList2021.ViewModels
@@ -18,10 +19,12 @@ namespace ShoppingList2021.ViewModels
     {
         private readonly IDbService dbService;
 
-        public ShoppingItemsViewModel(INavigationService navigationService, IDbServiceFactory dbServiceFactory)
+        public ShoppingItemsViewModel(INavigationService navigationService, IDbServiceFactory dbServiceFactory, IEventAggregator eventAggregator)
             : base(navigationService)
         {
             this.dbService = dbServiceFactory?.CreateNew() ?? throw new ArgumentNullException(nameof(dbServiceFactory));
+
+            eventAggregator.GetEvent<DataSavedEvent>().Subscribe(OnDataSaved);
 
             Items = new ObservableCollection<UIShoppingItem>();
             LoadItemsCommand = new AsyncCommand(ExecuteLoadItemsCommandAsync);
@@ -33,22 +36,32 @@ namespace ShoppingList2021.ViewModels
             ShoppingDoneCommand = new AsyncCommand(ShoppingDoneCommandAsync);
         }
 
+        private void OnDataSaved()
+        {
+            isDataUnSaved = false;
+            IsBusy = true;  // Refresh
+        }
+
         public AsyncCommand ShoppingDoneCommand { get; }
         private async Task ShoppingDoneCommandAsync()
         {
-            await dbService.EndShoppingAsync();
-            await ExecuteLoadItemsCommandAsync();
+            if (!isDataUnSaved)
+            {
+                await dbService.EndShoppingAsync();
+                await ExecuteLoadItemsCommandAsync();
+            }
         }
 
 
         public AsyncCommand<UIShoppingItem> SetItemBought { get; }
         private async Task SetItemBoughtAsync(UIShoppingItem item)
         {
-            if (item != null && item.State == ShoppingItemState.Open)
+            if (item != null && item.State == ShoppingItemState.Open && !isDataUnSaved)
             {
                 item.State = ShoppingItemState.Bought;
                 item.LastBought = DateTime.Now;
                 await dbService.SaveChangesAsync();
+                await ExecuteLoadItemsCommandAsync();
             }
         }
 
@@ -91,22 +104,26 @@ namespace ShoppingList2021.ViewModels
 
         private async Task OnAddItemAsync()
         {
-            var dbShoppingItem = dbService.CreateShoppingItem();
-            await dbService.AddShoppingItemAsync(dbShoppingItem);
-            var uiShoppingItem = new UIShoppingItem(dbShoppingItem, true);
+            if (!isDataUnSaved)
+            {
+                var dbShoppingItem = dbService.CreateShoppingItem();
+                await dbService.AddShoppingItemAsync(dbShoppingItem);
+                var uiShoppingItem = new UIShoppingItem(dbShoppingItem, true);
 
-            await NavigateToDetailPageAsync(uiShoppingItem);
+                await NavigateToDetailPageAsync(uiShoppingItem);
+            }
         }
 
         private async Task OnItemSelectedAsync(UIShoppingItem item)
         {
             selectedItem = item;
-            if (item != null)
+            if (item != null && !isDataUnSaved)
             {
                 await NavigateToDetailPageAsync(item);
             }
         }
 
+        private bool isDataUnSaved;
         private async Task NavigateToDetailPageAsync(UIShoppingItem uiShoppingItem)
         {
             var parameters = new NavigationParameters
@@ -115,16 +132,9 @@ namespace ShoppingList2021.ViewModels
                     { "Item", uiShoppingItem }
                 };
 
+            isDataUnSaved = true;
             // This will push the ShoppingItemDetailPage onto the navigation stack
             await NavigationService.NavigateAsync("ShoppingItemDetailPage", parameters);
-        }
-
-        public override void OnNavigatedTo(INavigationParameters parameters)
-        {
-            if (parameters.GetNavigationMode() == NavigationMode.Back)
-            {
-                IsBusy = true;  // Refresh
-            }
         }
 
         public override async Task InitializeAsync(INavigationParameters parameters)

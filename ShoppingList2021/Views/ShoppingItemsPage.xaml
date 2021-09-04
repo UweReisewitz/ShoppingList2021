@@ -4,7 +4,7 @@
              xmlns:model="clr-namespace:ShoppingList2021.Models"
              xmlns:local="clr-namespace:ShoppingList2021.ViewModels"
              x:Class="ShoppingList2021.Views.ShoppingItemsPage"
-             Title="{Binding Title}">
+             Title="{DynamicResource ItemsPageTitle}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="{DynamicResource ToolbarDone}"  Command="{Binding ShoppingDoneCommand}" IconImageSource="ToolbarCheck.png" />

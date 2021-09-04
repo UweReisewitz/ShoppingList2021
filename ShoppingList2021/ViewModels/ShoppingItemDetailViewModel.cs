@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AsyncAwaitBestPractices;
 using AutoMapper;
 using Prism.Commands;
 using Prism.Navigation;
@@ -159,10 +160,9 @@ namespace ShoppingList2021.ViewModels
                 }
                 mapper.Map(this, uiShoppingItem);
 
-                // this is not a good idea...
-                // dbService.SaveChangesAsync().SafeFireAndForget();
-                // instead this should by a synchronous call
-                dbService.SaveChanges();
+                dbService.SaveChangesAsync().SafeFireAndForget();
+                //// instead this should by a synchronous call
+                //dbService.SaveChanges();
             }
         }
     }

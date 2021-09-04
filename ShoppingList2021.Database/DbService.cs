@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Prism.Events;
 using ShoppingList2021.Core.Types;
+using ShoppingList2021.Database.Events;
 using ShoppingList2021.Database.Model;
 using ShoppingList2021.Database.Types;
 
@@ -13,11 +15,13 @@ namespace ShoppingList2021.Database
     {
         private readonly IPlatformSpecialFolder platformSpecialFolder;
         private readonly LocalDbContext localContext;
+        private readonly IEventAggregator eventAggregator;
 
-        public DbService(IPlatformSpecialFolder platformSpecialFolder)
+        public DbService(IPlatformSpecialFolder platformSpecialFolder, IEventAggregator eventAggregator)
         {
             this.platformSpecialFolder = platformSpecialFolder;
             localContext = new LocalDbContext(platformSpecialFolder);
+            this.eventAggregator = eventAggregator;
         }
 
         public async Task CreateOrMigrateDatabaseAsync()
@@ -30,7 +34,11 @@ namespace ShoppingList2021.Database
 
         public void SaveChanges() => localContext.SaveChanges();
 
-        public Task SaveChangesAsync() => localContext.SaveChangesAsync();
+        public async Task SaveChangesAsync()
+        {
+            await localContext.SaveChangesAsync();
+            eventAggregator.GetEvent<DataSavedEvent>().Publish();
+        }
 
         public Task<List<IShoppingItem>> GetShoppingListItemsAsync()
         {
